@@ -8,13 +8,17 @@ const OlxCalls = require('./shops/olx/calls.js');
 
 console.log('Schedule prepared!')
 
-schedule.scheduleJob('*/15 * * * *', () => {
-
+var main = () => {
     var ml = new MercadoLivreCalls();
     var olx = new OlxCalls();
 
     new Searcher()
         .find(ml.gpus().mobos().get())
         .find(olx.gpus().get())
+        .find(ml.psus().get())
         .go()
-});
+}
+
+//main();
+
+schedule.scheduleJob('*/15 * * * *', main);

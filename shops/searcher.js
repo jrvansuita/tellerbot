@@ -53,11 +53,6 @@ module.exports = class Searcher {
                 if (this.debug) {
                     console.log(this.teller.getMessage(params.storeName, item));
                 } else {
-
-
-
-
-
                     this.teller.newItemFound(params.storeName, item);
                 }
 

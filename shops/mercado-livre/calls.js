@@ -37,6 +37,62 @@ module.exports = class MercadoLivreCalls {
         return this;
     }
 
+    psuCorsair750() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/750-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(200)
+            .setMaxPrice(500)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psuCorsair850() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/850-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(300)
+            .setMaxPrice(700)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['850']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psuEvga750() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/750-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(200)
+            .setMaxPrice(500)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psuEvga850() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/850-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(300)
+            .setMaxPrice(700)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['850']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psus() {
+        return this.psuEvga750().psuEvga850().psuCorsair750().psuCorsair850();
+    }
+
     get() {
         return this.paramsList;
     }

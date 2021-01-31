@@ -6,7 +6,7 @@ module.exports = class TellerBot {
 
 
     constructor() {
-        this.bot = new TelegramBot(token, { polling: true });
+        this.bot = new TelegramBot(token, { polling: false });
         this.newItemPrefix = '\n👉 Novo Item encontrado';
         this.textOptions = { parse_mode: 'Markdown' }
     }
