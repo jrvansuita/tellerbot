@@ -1,3 +1,5 @@
+console.log('App started!')
+
 const schedule = require('node-schedule');
 
 const Searcher = require('./shops/searcher.js');
@@ -10,8 +12,9 @@ var searcher = new Searcher();
 var ml = new MercadoLivreCalls();
 var olx = new OlxCalls();
 
+console.log('Schedule prepared!')
 
-schedule.scheduleJob('*/15 * * * *', () => {
+schedule.scheduleJob('*/1 * * * *', () => {
 
     searcher
         .find(ml.gpus().mobos().get())
