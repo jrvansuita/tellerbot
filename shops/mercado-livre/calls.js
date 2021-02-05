@@ -10,6 +10,7 @@ module.exports = class MercadoLivreCalls {
             .setPriceItemSelector('.price-tag.ui-search-price__part .price-tag-fraction')
             .setLinkItemSelector('.ui-search-result__image > a');
 
+
         this.paramsList = [];
     }
 

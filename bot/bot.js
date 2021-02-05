@@ -18,16 +18,20 @@ bot.on('polling_error', (error) => {
 module.exports = class TellerBot {
 
     constructor() {
-        this.newItemPrefix = '\n👉 Novo Item encontrado';
-        this.textOptions = { parse_mode: 'Markdown' }
+        this.textOptions = { parse_mode: 'HTML', disable_web_page_preview: true, allow_sending_without_reply: true }
     }
 
     getMessage(source, item) {
-        return this.newItemPrefix + ' no ' + source + ' por __' + item.price + '__:\n[' + item.title + '](' + item.link + ')\n ';
+        //return this.newItemPrefix + ' no ' + source + ' por __' + item.price + '__:\n[' + item.title + '](' + item.link + ')\n ';
+
+        return '<a href="' + item.link + '">' + item.title + ' no ' + source + ' por <b>' + item.price + '</b></a>';
     }
 
-    newItemFound(source, price, desc, link) {
-        bot.sendMessage(telegramGroupId, this.getMessage(source, price, desc, link), this.textOptions);
+    newItemFound(source, item) {
+
+        var reply = { text: 'teste' }
+        bot.sendPhoto(telegramGroupId, item.link, {...this.textOptions, caption: this.getMessage(source, item), reply_markup: reply });
+        //bot.sendMessage(telegramGroupId, this.getMessage(source, item), this.textOptions);
     }
 
     send(text) {

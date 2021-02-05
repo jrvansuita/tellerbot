@@ -35,6 +35,8 @@ module.exports = class Searcher {
         var price = itemSelector.find(params.priceItemSelector).first().text().trim().replace(/\D/g, "");
         price = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)
 
+
+
         return { title, price, link }
     }
 

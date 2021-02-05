@@ -13,6 +13,7 @@ var main = async() => {
 
     var items = [];
 
+    //Prefs.gpus(true);
 
     if (await Prefs.mobos()) {
         items = items.concat(ml.mobos().get());
