@@ -1,4 +1,4 @@
-const TellerBot = require('../bot/teller');
+const TellerBot = require('../bot/bot');
 const request = require('request');
 const cheerio = require('cheerio');
 

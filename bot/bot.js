@@ -5,40 +5,15 @@ const bot = new TelegramBot(token, { polling: true });
 
 const telegramGroupId = -549708490;
 
-
-const Prefs = require('../prefs/prefs.js');
+const botMind = require('./mind.js');
 
 bot.onText(/\/bot (.+)/, (msg, match) => {
-    const chatId = msg.chat.id;
-    const message = match[1];
-    var response = '';
-    try {
-        Object.keys(Prefs).forEach((key) => {
-            if (message.startsWith(key)) {
-                if (message.includes('on') || message.includes('off')) {
-                    Prefs[key] = message.endsWith(' on');
-                    response = '⚙️' + key + ' ads turned ' + (Prefs[key] ? 'ON!' : 'OFF!');
-                }
-            }
-        });
-
-        if (response) {
-            bot.sendMessage(chatId, response);
-        } else {
-            bot.sendMessage(chatId, '🤖 sorry');
-        }
-    } catch (e) {
-        console.log(e)
-    }
+    botMind(bot, msg, match);
 });
-
 
 bot.on('polling_error', (error) => {
-    console.log(error.code); // => 'EFATAL'
+    console.log(error.message); // => 'EFATAL'
 });
-
-
-
 
 module.exports = class TellerBot {
 
