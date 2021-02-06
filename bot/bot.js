@@ -7,9 +7,9 @@ const telegramGroupId = -549708490;
 
 const botMind = require('./mind.js');
 
-// bot.onText(/\/bot (.+)/, (msg, match) => {
-//     botMind(bot, msg, match);
-// });
+bot.onText(/\/bot (.+)/, (msg, match) => {
+    botMind(bot, msg, match);
+});
 
 bot.on('polling_error', (error) => {
     console.log(error.message); // => 'EFATAL'

@@ -10,26 +10,43 @@ const { promisify } = require("util");
 const getAsync = promisify(client.get).bind(client);
 
 
-const getBoolean = async(key, value) => {
+
+
+module.exports = {
+
+    huntsEvery: async (value) => {
+        return await getStr('hunts-every', value);
+    },
+
+    gpus: async (value) => {
+        return await getBoolean('gpus', value);
+    },
+
+    psus: async (value) => {
+        return await getBoolean('psus', value);
+    },
+
+    mobos: async (value) => {
+        return await getBoolean('mobos', value);
+    }
+
+}
+
+
+
+const getStr = async (key, value) => {
+    if (value !== undefined) {
+        client.set(key, value);
+    }
+
+    return await getAsync(key) || '';
+};
+
+
+const getBoolean = async (key, value) => {
     if (value !== undefined) {
         client.set(key, value);
     }
 
     return await getAsync(key) == 'true';
 };
-
-module.exports = {
-
-    gpus: async(value) => {
-        return await getBoolean('gpus', value);
-    },
-
-    psus: async(value) => {
-        return await getBoolean('psus', value);
-    },
-
-    mobos: async(value) => {
-        return await getBoolean('mobos', value);
-    }
-
-}

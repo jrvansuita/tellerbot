@@ -7,43 +7,61 @@ const OlxCalls = require('./olx/calls.js');
 const Prefs = require('../redis/prefs.js');
 
 module.exports = class Executer {
-    constructor() {
-        this.types = [];
+    constructor(checkPrefs) {
+        this.gearTypes = [];
+        this.skipPrefs(false);
         this.sources = [new MercadoLivreCalls(), new OlxCalls()]
     }
 
-    gpus() {
-        this.types.push('gpus');
+    skipPrefs(value) {
+        this._skipPrefs = value;
         return this;
+    }
+
+    put(value) {
+        this.gearTypes.push(value);
+        return this;
+    }
+
+    gpus() {
+        return this.put('gpus');
     }
 
     mobos() {
-        this.types.push('mobos');
-        return this;
+        return this.put('mobos');
     }
 
     psus() {
-        this.types.push('psus');
-        return this;
+        return this.put('psus');
     }
     all() {
         return this.gpus().psus().mobos();
     }
 
+    clear() {
+        this.skipPrefs(false);
+        this.gearTypes = [];
+        return this;
+    }
+
     run(onTerminate) {
 
         var batch = [];
-        var typeIndex = 0;
+        var gearTypesIndex = 0;
         var sourceIndex = 0;
 
 
         var runner = async () => {
-            var currentType = this.types[typeIndex];
+            var currentType = this.gearTypes[gearTypesIndex];
 
             //Check if not end of array
             if (currentType) {
+
+                //Get The async Pref
+                var asyncPref = Prefs?.[currentType];
+
                 //Check if Type is current active on Preferences 
-                if (await Prefs?.[currentType]()) {
+                if ((asyncPref !== undefined) && (this._skipPrefs || await asyncPref())) {
                     //Retrive the parameters from source shop
                     var params = this.sources?.[sourceIndex]?.[currentType]?.()?.get();
 
@@ -52,15 +70,15 @@ module.exports = class Executer {
                         sourceIndex++;
                     } else {
                         sourceIndex = 0;
-                        typeIndex++;
+                        gearTypesIndex++;
                     }
                 } else {
-                    typeIndex++;
+                    gearTypesIndex++;
                 }
 
                 runner();
             } else {
-
+                this.skipPrefs(false);
                 new Searcher()
                     .find(batch)
                     .go(onTerminate);

@@ -113,6 +113,7 @@ module.exports = class Searcher {
                     execute();
                 })
             } else {
+                console.log('Search Terminated')
                 if (onTerminate) onTerminate();
             }
         }

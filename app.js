@@ -1,16 +1,14 @@
-console.log('App started!')
-
-const schedule = require('node-schedule');
+const Job = require('./scheduler/job.js');
 const Executer = require('./shops/executer.js');
 
+global.executer = new Executer();
+global.job = Job;
 
-var main = async () => {
-    new Executer().all().run(() => {
-        console.log('Terminated')
-    });
-}
+new Job().bind(async () => {
+    new Executer().all().run();
+}, (job) => {
+    //job.now();
+})
 
-main();
 
-console.log('Schedule prepared!')
-schedule.scheduleJob('*/30 * * * *', main);
+
