@@ -98,7 +98,7 @@ module.exports = class Searcher {
     }
 
 
-    go() {
+    go(onTerminate) {
 
         var paramsIndex = 0;
 
@@ -113,7 +113,7 @@ module.exports = class Searcher {
                     execute();
                 })
             } else {
-
+                if (onTerminate) onTerminate();
             }
         }
 
