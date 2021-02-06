@@ -7,9 +7,9 @@ const telegramGroupId = -549708490;
 
 const botMind = require('./mind.js');
 
-bot.onText(/\/bot (.+)/, (msg, match) => {
-    botMind(bot, msg, match);
-});
+// bot.onText(/\/bot (.+)/, (msg, match) => {
+//     botMind(bot, msg, match);
+// });
 
 bot.on('polling_error', (error) => {
     console.log(error.message); // => 'EFATAL'
@@ -23,18 +23,12 @@ module.exports = class TellerBot {
 
     getMessage(source, item) {
         //return this.newItemPrefix + ' no ' + source + ' por __' + item.price + '__:\n[' + item.title + '](' + item.link + ')\n ';
-
         return '<a href="' + item.link + '">' + item.title + ' no ' + source + ' por <b>' + item.price + '</b></a>';
     }
 
     newItemFound(source, item) {
-
         var reply = { text: 'teste' }
-        bot.sendPhoto(telegramGroupId, item.link, {...this.textOptions, caption: this.getMessage(source, item), reply_markup: reply });
+        bot.sendPhoto(telegramGroupId, item.link, { ...this.textOptions, caption: this.getMessage(source, item), reply_markup: reply });
         //bot.sendMessage(telegramGroupId, this.getMessage(source, item), this.textOptions);
-    }
-
-    send(text) {
-        bot.sendMessage(telegramGroupId, text);
     }
 };
