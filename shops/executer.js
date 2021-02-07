@@ -58,7 +58,7 @@ module.exports = class Executer {
             if (currentType) {
 
                 //Get The async Pref
-                var asyncPref = Prefs?.[currentType];
+                var asyncPref = Prefs.items?.[currentType];
 
                 //Check if Type is current active on Preferences 
                 if ((asyncPref !== undefined) && (this._skipPrefs || await asyncPref())) {

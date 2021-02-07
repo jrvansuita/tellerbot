@@ -1,54 +1,87 @@
 const Prefs = require('../redis/prefs.js');
 
-module.exports = (bot, msg, match) => {
-    try {
-
-        const chatId = msg.chat.id;
-        const message = match[1];
-
-        console.log(message);
-
-        var response = checkGearTypesOnOff(message);
-        var response = response || checkHuntClockChange(message);
-        var response = response || checkHuntNow(message);
-        var response = response || checkGearTypesUnitarySearches(message);
+/*
+find - Search immediately by [item?].
+hunt - Hunts immediately by active items.
+schedule - Set the hunt schedule [Default 1h 30m].
+pref - Activate or not the automatic hunt by item [item? on-off?].
+pref_show - Show itens active or inactive preferences.
+ignore_show - Show the ignore items list.
+ignore_clear - Clear the ignore items list.
+*/
 
 
-        if (response) {
-            bot.sendMessage(chatId, response);
-        } else {
-            bot.sendMessage(chatId, '🤖 sorry');
-        }
-    } catch (e) {
-        console.log(e)
+module.exports = class Mind {
+    constructor(bot) {
+        this.bot = bot;
+    }
+
+    initialize() {
+        this.bot.on('polling_error', (error) => {
+            console.log(error.message); // => 'EFATAL'
+            this.bot.sendMessage(error.message);
+        });
+
+        this.bot.on("callback_query", (data) => {
+            if (data.data == "ignore-item") {
+                Prefs.ignores(data.message.caption);
+                this.bot.sendMessage(data.message.chat.id, '🚫 This item will never show up again!');
+            }
+        });
+    }
+
+    attach(command, callback) {
+        this.bot.onText(command, async (msg, match) => {
+            const chatId = msg.chat.id;
+            const message = match[1];
+            var response = await callback(message) || '🤖 sorry';
+            if (response) this.bot.sendMessage(chatId, response, { parse_mode: 'HTML' });
+        });
+    }
+
+    create() {
+        this.initialize();
+
+        this.attach(/\/find (.+)/, (msg) => {
+            return find(msg);
+        })
+
+        this.attach(/\/hunt/, hunt)
+
+        this.attach(/\/schedule (.+)/, (msg) => {
+            return schedule(msg);
+        })
+
+        this.attach(/\/pref (.+)/, (msg) => {
+            return pref(msg);
+        })
+        this.attach(/\/pref_show/, prefShow)
+
+        this.attach(/\/ignore_clear/, ignoreClear)
+        this.attach(/\/ignore_show/, ignoreShow)
     }
 }
 
-function checkHuntNow(requestMessage) {
-    var keys = ['hunt now', 'search now', 'now'];
-    if (keys.some((e) => { return e == requestMessage.toLowerCase() })) {
-        global.job.now();
-        return '⏳ Searching now...';
-    }
+
+function hunt() {
+    global.job.now();
+    return '⏳ Hunting goods now...';
 }
 
-function checkHuntClockChange(requestMessage) {
-    var key = 'hunt every ';
-    if (requestMessage.includes(key)) {
-        var value = requestMessage.replace(key, '');
-        Prefs.huntsEvery(value);
-        global.job.reschedule();
-        return '⏰ Hunts schedule every ' + value;
-    }
+function schedule(timing) {
+    var value = timing;
+    Prefs.huntsEvery(value);
+    global.job.reschedule();
+    return '⏰ Hunts schedule every ' + value;
 }
 
-function checkGearTypesOnOff(requestMessage) {
+function pref(value) {
     var response = '';
-    Object.keys(Prefs).forEach((key) => {
-        if (requestMessage.startsWith(key)) {
-            if (requestMessage.includes('on') || requestMessage.includes('off')) {
-                var isActive = requestMessage.endsWith(' on');
-                Prefs[key](isActive);
+    Object.keys(Prefs.items).forEach((key) => {
+        if (value.startsWith(key)) {
+            if (value.includes('on') || value.includes('off')) {
+                var isActive = value.endsWith(' on');
+                Prefs.items[key](isActive);
                 response = '⚙️' + key + ' ads turned ' + (isActive ? 'ON!' : 'OFF!');
             }
         }
@@ -57,18 +90,41 @@ function checkGearTypesOnOff(requestMessage) {
     return response;
 }
 
-function checkGearTypesUnitarySearches(requestMessage) {
+function find(type) {
     var response = '';
-    var keys = ['hunt', 'search', 'find', 'give'];
-    if (keys.some((e) => { return requestMessage.toLowerCase().startsWith(e) })) {
-        Object.keys(Prefs).forEach((key) => {
-            if (requestMessage.includes(key)) {
-                global.executer.clear().put(key).skipPrefs(true).run();
-                response = '⏳ Searching now...';
-            }
-        });
+
+    Object.keys(Prefs.items).forEach((key) => {
+        if (type == key) {
+            global.executer.clear().put(key).skipPrefs(true).run();
+            response = '⏳ Searching now...';
+        }
+    });
+
+    return response;
+}
+
+function ignoreClear() {
+    Prefs.ignores(null, true);
+    return '🧹 Ignore List Cleared';
+}
+
+
+async function ignoreShow() {
+    return (await Prefs.ignores()).map((e) => { return '• ' + e }).join('\n');
+}
+
+
+async function prefShow() {
+    var response = 'Preferences Items List:';
+
+    var keys = Object.keys(Prefs.items);
+
+    for (let index = 0; index < keys.length; index++) {
+        var active = await Prefs.items[keys[index]]();
+        response += '\n• ' + keys[index] + ' <b>' + active + '</b>';
     }
 
     return response;
-
 }
+
+

@@ -14,24 +14,54 @@ const getAsync = promisify(client.get).bind(client);
 
 module.exports = {
 
+    ignores: async (value, clear) => {
+        return await getArray('ignore-list', value, clear);
+    },
+
     huntsEvery: async (value) => {
         return await getStr('hunts-every', value);
     },
 
-    gpus: async (value) => {
-        return await getBoolean('gpus', value);
-    },
+    items: {
+        gpus: async (value) => {
+            return await getBoolean('gpus', value);
+        },
 
-    psus: async (value) => {
-        return await getBoolean('psus', value);
-    },
+        psus: async (value) => {
+            return await getBoolean('psus', value);
+        },
 
-    mobos: async (value) => {
-        return await getBoolean('mobos', value);
+        mobos: async (value) => {
+            return await getBoolean('mobos', value);
+        }
     }
 
 }
 
+
+
+
+const getArray = async (key, value, clear) => {
+    var arr = JSON.parse(await getAsync(key) || '[]');
+
+    if (value !== undefined) {
+        arr.push(value);
+        client.set(key, clear ? '' : JSON.stringify(arr));
+    }
+
+    return arr;
+};
+
+const getObj = async (key, value) => {
+    var object = JSON.parse(await getAsync(key) || '{}');
+
+    if (value !== undefined) {
+        object[value] = true;
+        client.set(key, JSON.stringify(object));
+    }
+
+    return object;
+};
 
 
 const getStr = async (key, value) => {

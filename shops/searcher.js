@@ -1,4 +1,5 @@
 const TellerBot = require('../bot/bot');
+const Prefs = require('../redis/prefs');
 const request = require('request');
 const cheerio = require('cheerio');
 
@@ -28,6 +29,14 @@ module.exports = class Searcher {
             (params.includesTitleWords.some((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) }))
     }
 
+    async isIgnoredItem(itemTitle) {
+        var ignoreList = await Prefs.ignores();
+
+        return ignoreList.some((e) => {
+            return e.includes(itemTitle);
+        })
+    }
+
     parseItem(params, itemSelector) {
         var title = itemSelector.find(params.titleItemSelector).text().trim();
         var link = (params.linkItemSelector ? itemSelector.find(params.linkItemSelector) : itemSelector).first().attr('href');
@@ -46,10 +55,10 @@ module.exports = class Searcher {
         var matched = 0;
         var iterator = $(params.iterateItemsSelector);
 
-        iterator.each((i, el) => {
+        iterator.each(async (i, el) => {
             var item = this.parseItem(params, $(el));
 
-            if (this.isFiltersChecked(params, item.title)) {
+            if (this.isFiltersChecked(params, item.title) && !(await this.isIgnoredItem(item.title))) {
                 matched++;
 
                 if (this.debug) {
@@ -114,6 +123,7 @@ module.exports = class Searcher {
                 })
             } else {
                 console.log('Search Terminated')
+                this.teller.searchTerminated()
                 if (onTerminate) onTerminate();
             }
         }

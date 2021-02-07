@@ -20,7 +20,6 @@ module.exports = class Job {
 
     buildPattern(timing) {
         var time = '*/m */h * * *'.replace('m', timing.minute).replace('h', timing.hour);
-        console.log(time);
         return time;
     }
 
