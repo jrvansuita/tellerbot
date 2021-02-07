@@ -43,7 +43,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(200)
             .setMaxPrice(500)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['750']);
+            .setIncludesTitleWords(['750', , 'corsair']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
@@ -56,7 +56,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(300)
             .setMaxPrice(700)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['850']);
+            .setIncludesTitleWords(['850', 'corsair']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
@@ -69,7 +69,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(200)
             .setMaxPrice(500)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['750']);
+            .setIncludesTitleWords(['750', 'evga']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
@@ -82,7 +82,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(300)
             .setMaxPrice(700)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['850']);
+            .setIncludesTitleWords(['850', 'evga']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
