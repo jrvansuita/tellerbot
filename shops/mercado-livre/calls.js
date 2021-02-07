@@ -43,7 +43,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(200)
             .setMaxPrice(500)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['750', , 'corsair']);
+            .setIncludesTitleWords(['750', 'corsair']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
