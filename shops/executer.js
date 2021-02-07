@@ -35,7 +35,7 @@ module.exports = class Executer {
         return this.put('psus');
     }
     all() {
-        return this.gpus().psus().mobos();
+        return this.gpus().psus().mobos().proc();
     }
 
     clear() {

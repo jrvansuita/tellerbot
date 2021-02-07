@@ -33,6 +33,10 @@ module.exports = {
 
         mobos: async (value) => {
             return await getBoolean('mobos', value);
+        },
+
+        proc: async (value) => {
+            return await getBoolean('proc', value);
         }
     }
 
