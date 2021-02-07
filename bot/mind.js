@@ -2,8 +2,11 @@ const Prefs = require('../redis/prefs.js');
 
 module.exports = (bot, msg, match) => {
     try {
+
         const chatId = msg.chat.id;
         const message = match[1];
+
+        console.log(message);
 
         var response = checkGearTypesOnOff(message);
         var response = response || checkHuntClockChange(message);
