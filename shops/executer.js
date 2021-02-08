@@ -7,7 +7,7 @@ const OlxCalls = require('./olx/calls.js');
 const Prefs = require('../redis/prefs.js');
 
 module.exports = class Executer {
-    constructor(checkPrefs) {
+    constructor() {
         this.gearTypes = [];
         this.skipPrefs(false);
         this.sources = [new MercadoLivreCalls(), new OlxCalls()]
@@ -34,8 +34,13 @@ module.exports = class Executer {
     psus() {
         return this.put('psus');
     }
+
+    proc() {
+        return this.put('proc');
+    }
+
     all() {
-        return this.gpus().psus().mobos().proc();
+        return this.psus().mobos().proc().gpus();
     }
 
     clear() {
@@ -45,6 +50,7 @@ module.exports = class Executer {
     }
 
     run(onTerminate) {
+
 
         var batch = [];
         var gearTypesIndex = 0;
@@ -67,6 +73,7 @@ module.exports = class Executer {
 
                     if (params) {
                         batch = batch.concat(params)
+                        
                         sourceIndex++;
                     } else {
                         sourceIndex = 0;

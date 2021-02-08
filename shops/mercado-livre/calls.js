@@ -120,7 +120,9 @@ module.exports = class MercadoLivreCalls {
     }
 
     get() {
-        return this.paramsList;
+        var result = this.paramsList;
+        this.paramsList = [];
+        return result;
     }
 
 }

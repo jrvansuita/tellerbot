@@ -33,7 +33,7 @@ module.exports = class TellerBot {
             }
         };
 
-        bot.sendPhoto(telegramGroupId, item.link, options);
+        bot.sendPhoto(telegramGroupId, item.link, options)
     }
 
     searchTerminated() {

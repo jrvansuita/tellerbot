@@ -44,7 +44,13 @@ module.exports = class Searcher {
         var price = itemSelector.find(params.priceItemSelector).first().text().trim().replace(/\D/g, "");
         price = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)
 
+        var add = itemSelector.find(params.additionalItemSelector).first().text();
+        if (add) {
+            add = add.split('-');
+            add = ' em ' + add[0].trim() + '/' + add[1].trim();
+        }
 
+        title += add;
 
         return { title, price, link }
     }
@@ -123,7 +129,7 @@ module.exports = class Searcher {
                 })
             } else {
                 console.log('Search Terminated')
-                this.teller.searchTerminated()
+                setTimeout(this.teller.searchTerminated, 2000);
                 if (onTerminate) onTerminate();
             }
         }

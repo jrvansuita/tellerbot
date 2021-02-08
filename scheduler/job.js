@@ -5,28 +5,26 @@ let mainJob;
 
 module.exports = class Job {
 
-    async fromPrefs() {
-        var defualt = { hour: 1, minute: 30 };
 
+    async buildPattern() {
+        var result = '';
         var prefValue = await Prefs.huntsEvery();
         var time = prefValue.match(/\d+/g);
 
-        if (prefValue.toLowerCase().includes('h')) defualt.hour = time;
+        if (prefValue.toLowerCase().includes('h')) result = '* */' + time;
 
-        if (prefValue.toLowerCase().includes('m')) defualt.minute = time
+        if (prefValue.toLowerCase().includes('m')) result = '*/' + time + ' *';
 
-        return defualt;
-    }
+        result = result + ' * * *';
 
-    buildPattern(timing) {
-        var time = '*/m */h * * *'.replace('m', timing.minute).replace('h', timing.hour);
-        return time;
+        //console.log(result)
+        return result;
     }
 
     static async reschedule() {
-        var job = new Job();
-        var timing = await job.fromPrefs();
-        mainJob.reschedule(job.buildPattern(timing))
+        mainJob.reschedule(await new Job().buildPattern())
+
+        //console.log(mainJob.nextInvocation())
     }
 
     static now() {
@@ -34,8 +32,7 @@ module.exports = class Job {
     }
 
     async bind(work, onTerminate) {
-        var timing = await this.fromPrefs();
-        mainJob = schedule.scheduleJob(this.buildPattern(timing), work);
+        mainJob = schedule.scheduleJob(await this.buildPattern(), work);
         if (onTerminate) onTerminate(this);
     }
 

@@ -62,6 +62,11 @@ module.exports = class Params {
         return this;
     }
 
+    setAdditionalItemSelector(selector) {
+        this.additionalItemSelector = selector;
+        return this;
+    }
+
     getBuildedUrl(index) {
         return this.urls[index] ? this.urls[index].replace('${minPrice}', this.minPrice).replace('${maxPrice}', this.maxPrice) : null;
     }
