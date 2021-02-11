@@ -20,7 +20,7 @@ module.exports = class MercadoLivreCalls {
             .setMinPrice(800)
             .setMaxPrice(1300)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro'])
-            .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080'])
+            .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
 
         this.paramsList.push(lodashClonedeep(this.params))
 

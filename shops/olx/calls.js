@@ -49,6 +49,18 @@ module.exports = class OlxCalls {
         return this;
     }
 
+    gpusNvidia1660() {
+        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201660%20ti')
+            .setMinPrice(800)
+            .setMaxPrice(1600)
+            .setIgnoreTitleWords([...this.defIgnores])
+            .setIncludesTitleWords(['1070', '1080', '6gb', '1660', '1060', '8gb']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
 
     gpusNvidia1070() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201070%208gb')
@@ -93,7 +105,8 @@ module.exports = class OlxCalls {
             .gpuAmd5700()
             .gpusNvidia1060()
             .gpusNvidia1070()
-            .gpusNvidia1080();
+            .gpusNvidia1080()
+            .gpusNvidia1660();
     }
 
     get() {
