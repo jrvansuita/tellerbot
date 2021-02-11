@@ -3,9 +3,11 @@ const Prefs = require('../redis/prefs');
 const request = require('request');
 const cheerio = require('cheerio');
 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 module.exports = class Searcher {
-    constructor(debug) {
-        this.debug = debug;
+    constructor() {
         this.teller = new TellerBot();
     }
 
@@ -55,26 +57,27 @@ module.exports = class Searcher {
         return { title, price, link }
     }
 
-    handleResponseBody(params, body) {
+    async handleResponseBody(params, body) {
+
         var $ = cheerio.load(body);
+
+        //const dom = new JSDOM(body);
+        //var $ = require('jquery')(dom.window);
 
         var matched = 0;
         var iterator = $(params.iterateItemsSelector);
 
-        iterator.each(async (i, el) => {
+        for (let index = 0; index < iterator.length; index++) {
+            const el = iterator[index];
+
             var item = this.parseItem(params, $(el));
 
             if (this.isFiltersChecked(params, item.title) && !(await this.isIgnoredItem(item.title))) {
                 matched++;
-
-                if (this.debug) {
-                    console.log(this.teller.getMessage(params.storeName, item));
-                } else {
-                    this.teller.newItemFound(params.storeName, item);
-                }
-
+                console.log(this.teller.getText(params.storeName, item));
+                this.teller.newItemFound(params.storeName, item);
             }
-        });
+        }
 
         console.log(`${iterator.length} items found and ${matched} matched!`);
     }

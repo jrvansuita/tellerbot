@@ -64,6 +64,30 @@ module.exports = class MercadoLivreCalls {
         return this;
     }
 
+    psuCorsair1000() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/1000-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(500)
+            .setMaxPrice(800)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['1000', 'corsair']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    psuCorsair1200() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/1200-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(500)
+            .setMaxPrice(900)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['1200', 'corsair']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
 
     psuEvga750() {
         this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/750-W/_PriceRange_${minPrice}-${maxPrice}')
@@ -79,7 +103,7 @@ module.exports = class MercadoLivreCalls {
 
 
     psuEvga850() {
-        this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/850-W/_PriceRange_${minPrice}-${maxPrice}')
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/850-W/_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(300)
             .setMaxPrice(650)
             .setIgnoreTitleWords(['defeito'])
@@ -89,6 +113,32 @@ module.exports = class MercadoLivreCalls {
 
         return this;
     }
+
+    psuEvga1000() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/1000-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(500)
+            .setMaxPrice(800)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['1000', 'evga']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    psuEvga1200() {
+        this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/1200-W/_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(500)
+            .setMaxPrice(900)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['1200', 'evga']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
 
     psuBitmain() {
         this.params.setUrls(this.base + '/fontes-alimentacao/bitmain-1600w_PriceRange_${minPrice}-${maxPrice}')
@@ -103,7 +153,7 @@ module.exports = class MercadoLivreCalls {
     }
 
     psus() {
-        return this.psuEvga750().psuEvga850().psuCorsair750().psuCorsair850().psuBitmain();
+        return this.psuEvga750().psuEvga850().psuCorsair750().psuCorsair850().psuCorsair1000().psuCorsair1200().psuEvga1000().psuEvga1200().psuBitmain();
     }
 
 

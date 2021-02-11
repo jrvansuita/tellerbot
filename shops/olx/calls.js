@@ -13,7 +13,7 @@ module.exports = class OlxCalls {
             .setAdditionalItemSelector('.sc-7l84qu-1')
             .setLinkItemSelector();
 
-        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca'];
+        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd'];
 
         this.paramsList = [];
 
@@ -30,7 +30,7 @@ module.exports = class OlxCalls {
             .setMinPrice(800)
             .setMaxPrice(1300)
             .setIgnoreTitleWords([...this.defIgnores])
-            .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080']);
+            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 

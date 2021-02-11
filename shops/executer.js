@@ -5,12 +5,13 @@ const Searcher = require('./searcher.js');
 const MercadoLivreCalls = require('./mercado-livre/calls.js');
 const OlxCalls = require('./olx/calls.js');
 const Prefs = require('../redis/prefs.js');
+const FacebookCalls = require('./facebook/calls.js');
 
 module.exports = class Executer {
     constructor() {
         this.gearTypes = [];
         this.skipPrefs(false);
-        this.sources = [new MercadoLivreCalls(), new OlxCalls()]
+        this.sources = [/*new FacebookCalls(),*/ new OlxCalls(), new MercadoLivreCalls()]
     }
 
     skipPrefs(value) {
@@ -73,7 +74,7 @@ module.exports = class Executer {
 
                     if (params) {
                         batch = batch.concat(params)
-                        
+
                         sourceIndex++;
                     } else {
                         sourceIndex = 0;

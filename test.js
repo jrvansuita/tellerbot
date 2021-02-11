@@ -1,7 +1,8 @@
-const Prefs = require('./redis/prefs');
 
-var f = async () => {
-    console.log(await Prefs.ignores());
-}
+const Executer = require('./shops/executer.js');
 
-f();
+global.executer = new Executer();
+
+new Executer().all().run();
+
+

@@ -22,6 +22,10 @@ module.exports = class TellerBot {
         return '<a href="' + item.link + '">' + item.title + ' no ' + source + ' por <b>' + item.price + '</b></a>';
     }
 
+    getText(source, item) {
+        return item.title + ' no ' + source + ' por ' + item.price;
+    }
+
     newItemFound(source, item) {
         var options = {
             caption: this.getMessage(source, item),
