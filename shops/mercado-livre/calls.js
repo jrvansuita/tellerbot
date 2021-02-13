@@ -18,7 +18,7 @@ module.exports = class MercadoLivreCalls {
     gpus() {
         this.params.setUrls(this.base + '/placas-video/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(800)
-            .setMaxPrice(1300)
+            .setMaxPrice(1650)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro'])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
 

@@ -13,7 +13,7 @@ module.exports = class OlxCalls {
             .setAdditionalItemSelector('.sc-7l84qu-1')
             .setLinkItemSelector();
 
-        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd'];
+        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram '];
 
         this.paramsList = [];
 
@@ -28,7 +28,7 @@ module.exports = class OlxCalls {
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%208gb')
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%208gb')
             .setMinPrice(800)
-            .setMaxPrice(1300)
+            .setMaxPrice(1500)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080']);
 
@@ -52,7 +52,7 @@ module.exports = class OlxCalls {
     gpusNvidia1660() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201660%20ti')
             .setMinPrice(800)
-            .setMaxPrice(1600)
+            .setMaxPrice(1800)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '6gb', '1660', '1060', '8gb']);
 
@@ -65,7 +65,7 @@ module.exports = class OlxCalls {
     gpusNvidia1070() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201070%208gb')
             .setMinPrice(800)
-            .setMaxPrice(1400)
+            .setMaxPrice(1800)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '8gb']);
 
@@ -77,7 +77,7 @@ module.exports = class OlxCalls {
     gpusNvidia1080() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201080%208gb')
             .setMinPrice(800)
-            .setMaxPrice(1800)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '8gb']);
 
@@ -90,7 +90,7 @@ module.exports = class OlxCalls {
     gpusNvidia1060() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201060%206gb')
             .setMinPrice(800)
-            .setMaxPrice(1000)
+            .setMaxPrice(1200)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1060', '6gb']);
 
