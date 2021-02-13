@@ -89,7 +89,8 @@ module.exports = class Searcher {
             this.checkRequestErrors(e)
             this.handleResponseBody(params, body)
 
-            callback();
+
+            setTimeout(callback, 1500);
         });
     }
 
