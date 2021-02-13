@@ -11,7 +11,7 @@ module.exports = class Executer {
     constructor() {
         this.gearTypes = [];
         this.skipPrefs(false);
-        this.sources = [/*new FacebookCalls(),*/ new OlxCalls(), new MercadoLivreCalls()]
+        this.sources = [new FacebookCalls(), new OlxCalls(), new MercadoLivreCalls()]
     }
 
     skipPrefs(value) {

@@ -1,5 +1,6 @@
 const TellerBot = require('../bot/bot');
 const Prefs = require('../redis/prefs');
+const Util = require('../util/util.js');
 const request = require('request');
 const cheerio = require('cheerio');
 
@@ -77,6 +78,8 @@ module.exports = class Searcher {
                 console.log(this.teller.getText(params.storeName, item));
                 this.teller.newItemFound(params.storeName, item);
             }
+
+            Util.sleep(500);
         }
 
         console.log(`${iterator.length} items found and ${matched} matched!`);
