@@ -5,8 +5,10 @@ const lodashClonedeep = require('lodash.clonedeep');
 module.exports = class OlxCalls {
     constructor() {
         this.params = new Params('Olx');
-        //this.base = 'https://sc.olx.com.br/norte-de-santa-catarina/computadores-e-acessorios/pecas-e-acessorios';
         this.base = 'https://olx.com.br/computadores-e-acessorios/pecas-e-acessorios';
+        this.baseSC = 'https://sc.olx.com.br/computadores-e-acessorios/pecas-e-acessorios';
+        this.baseVale = 'https://sc.olx.com.br/norte-de-santa-catarina/computadores-e-acessorios/pecas-e-acessorios';
+
         this.params.setIterateItemsSelector('ul#ad-list > .sc-1fcmfeb-2 > a')
             .setTitleItemSelector('.sc-1mbetcw-0')
             .setPriceItemSelector('.sc-ifAKCX.eoKYee')
@@ -108,6 +110,39 @@ module.exports = class OlxCalls {
             .gpusNvidia1080()
             .gpusNvidia1660();
     }
+
+
+    psuCorsair() {
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=fonte%20corsair')
+            .setMinPrice(200)
+            .setMaxPrice(500)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750', '850']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    psuEvga() {
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=fonte%20evga')
+            .setMinPrice(200)
+            .setMaxPrice(500)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750', '850']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psus() {
+        return this.psuCorsair().psuEvga();
+    }
+
+
+
 
     get() {
         return this.paramsList;
