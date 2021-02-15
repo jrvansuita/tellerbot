@@ -54,7 +54,7 @@ module.exports = class Scraper {
     }
 
     async get(callback) {
-        const content = '';
+        var content = '';
         try {
 
             await this.createBrowser();
