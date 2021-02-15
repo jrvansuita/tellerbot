@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 
 (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: !process.env.PRODUCTION || false });
     const page = await browser.newPage();
 
     await page.goto(url);
