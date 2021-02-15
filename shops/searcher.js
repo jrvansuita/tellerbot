@@ -87,7 +87,7 @@ module.exports = class Searcher {
         new Scraper(url).get((body) => {
             this.handleResponseBody(params, body)
 
-            setTimeout(callback, 800);
+            setTimeout(callback, 250);
         });
     }
 

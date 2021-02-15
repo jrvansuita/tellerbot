@@ -54,20 +54,27 @@ module.exports = class Scraper {
     }
 
     async get(callback) {
-        await this.createBrowser();
+        try {
 
-        await this.page.goto(this.url);
+            await this.createBrowser();
 
-        await this.page.waitForTimeout(1000)
-        await this.autoScroll();
-        //await this.screenShot();
+            await this.page.goto(this.url);
 
-        const content = await this.page.content({ waitUntil: 'load', timeout: 5000 });
+            await this.page.waitForTimeout(250)
+            await this.autoScroll();
+            //await this.screenShot();
 
-        setTimeout(() => {
-            callback(content)
-        }, 200)
+            const content = await this.page.content({ waitUntil: 'load', timeout: 5000 });
 
-        this.browser.close();
+            setTimeout(() => {
+                callback(content)
+            }, 200)
+        } catch (e) {
+            callback('error')
+        } finally {
+            if (this.browser && this.browser.close)
+                this.browser.close();
+
+        }
     }
 }
