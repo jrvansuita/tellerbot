@@ -26,7 +26,7 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
             .setMinPrice(700)
             .setMaxPrice(1300)
-            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'compro'])
+            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'compro', '4g', '2g'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 '])
 
         this.paramsList.push(lodashClonedeep(this.params))

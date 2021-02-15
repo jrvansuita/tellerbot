@@ -74,7 +74,7 @@ module.exports = class Searcher {
                 matched++;
                 console.log(this.teller.getText(params.storeName, item));
                 this.teller.newItemFound(params.storeName, item);
-                Util.sleep(200);
+                Util.sleep(500);
             }
         }
 
