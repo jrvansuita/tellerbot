@@ -18,13 +18,16 @@ module.exports = class FacebookCalls {
 
     gpus() {
         this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx580')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx480')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx470')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx570')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx480')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx470')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx570')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx590')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1070')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
             .setMinPrice(700)
             .setMaxPrice(1300)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'compro'])
-            .setIncludesTitleWords(['580', '570', '590', '480', '470'])
+            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 '])
 
         this.paramsList.push(lodashClonedeep(this.params))
 
