@@ -1,3 +1,4 @@
+process.env.NTBA_FIX_319 = 1;
 const token = '1668037380:AAEVRY00NfsIA0bea_lD_ciT2wc9m4HylOI';
 
 const TelegramBot = require('node-telegram-bot-api');
