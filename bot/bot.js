@@ -19,7 +19,7 @@ module.exports = class TellerBot {
     }
 
     getMessage(source, item) {
-        return '<a href="' + item.link + '">' + item.title + ' no ' + source + ' por <b>' + item.price + '</b></a>';
+        return '<a href="' + item.link + '">' + item.title + ' no <b>' + source + '</b> por <b>' + item.price + '</b></a>';
     }
 
     getText(source, item) {
@@ -37,7 +37,7 @@ module.exports = class TellerBot {
             }
         };
 
-        bot.sendPhoto(telegramGroupId, item.link, options)
+        bot.sendPhoto(telegramGroupId, item.img || item.link, options)
     }
 
     searchTerminated() {

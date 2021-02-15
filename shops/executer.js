@@ -58,6 +58,8 @@ module.exports = class Executer {
         var sourceIndex = 0;
 
 
+
+
         var runner = async () => {
             var currentType = this.gearTypes[gearTypesIndex];
 
@@ -67,26 +69,33 @@ module.exports = class Executer {
                 //Get The async Pref
                 var asyncPref = Prefs.items?.[currentType];
 
+
                 //Check if Type is current active on Preferences 
                 if ((asyncPref !== undefined) && (this._skipPrefs || await asyncPref())) {
                     //Retrive the parameters from source shop
                     var params = this.sources?.[sourceIndex]?.[currentType]?.()?.get();
 
+
                     if (params) {
+
                         batch = batch.concat(params)
 
+                        sourceIndex++;
+                    } else if (sourceIndex < this.sources.length) {
                         sourceIndex++;
                     } else {
                         sourceIndex = 0;
                         gearTypesIndex++;
                     }
                 } else {
+                    sourceIndex = 0;
                     gearTypesIndex++;
                 }
 
                 runner();
             } else {
                 this.skipPrefs(false);
+
                 new Searcher()
                     .find(batch)
                     .go(onTerminate);

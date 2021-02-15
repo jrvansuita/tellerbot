@@ -1,11 +1,10 @@
 const TellerBot = require('../bot/bot');
 const Prefs = require('../redis/prefs');
 const Util = require('../util/util.js');
-const request = require('request');
-const cheerio = require('cheerio');
 
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const cheerio = require('cheerio');
+const puppeteer = require('puppeteer');
+
 
 module.exports = class Searcher {
     constructor() {
@@ -23,9 +22,6 @@ module.exports = class Searcher {
         console.log(url);
     }
 
-    checkRequestErrors(e) {
-        if (e) { return console.error('There was an error!', e); }
-    }
 
     isFiltersChecked(params, itemTitle) {
         return (!params.ignoreTitleWords.some((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) })) &&
@@ -43,6 +39,7 @@ module.exports = class Searcher {
     parseItem(params, itemSelector) {
         var title = itemSelector.find(params.titleItemSelector).text().trim();
         var link = (params.linkItemSelector ? itemSelector.find(params.linkItemSelector) : itemSelector).first().attr('href');
+        var img = params.imgItemSelector ? itemSelector.find(params.imgItemSelector).first().attr('src') : link;
 
         var price = itemSelector.find(params.priceItemSelector).first().text().trim().replace(/\D/g, "");
         price = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)
@@ -55,15 +52,18 @@ module.exports = class Searcher {
 
         title += add;
 
-        return { title, price, link }
+        if (params.concatLink) {
+            link = params.concatLink + link;
+        }
+
+        return { title, price, link, img }
     }
+
+
 
     async handleResponseBody(params, body) {
 
-        var $ = cheerio.load(body);
-
-        //const dom = new JSDOM(body);
-        //var $ = require('jquery')(dom.window);
+        const $ = cheerio.load(body);
 
         var matched = 0;
         var iterator = $(params.iterateItemsSelector);
@@ -86,14 +86,54 @@ module.exports = class Searcher {
     }
 
 
+    async getPageContent(url, callback) {
+        const browser = await puppeteer.launch({ headless: false });
+        const page = await browser.newPage();
+
+
+        //intercept images and abort load to fast it up
+        // await page.setRequestInterception(true)
+        // page.on('request', async (request) => {
+        //     if (request.resourceType() == 'image') {
+        //         await request.abort()
+        //     } else {
+        //         await request.continue()
+        //     }
+        // })
+
+
+        await page.setViewport({ width: 1280, height: 20000 })
+        await page.goto(url);
+
+        await page.waitForTimeout(10000)
+
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(200)
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(200)
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(200)
+        await page.keyboard.press('ArrowDown');
+        // await page.evaluate(() => {
+        //     window.scrollTo(0, window.document.body.scrollHeight)
+        // });
+
+
+        const content = await page.content({ waitUntil: 'load', timeout: 5000 });
+
+
+
+        callback(content)
+
+        browser.close();
+    }
+
 
     makeRequest(url, params, callback) {
-        request(url, (e, r, body) => {
-            this.checkRequestErrors(e)
+        this.getPageContent(url, (body) => {
             this.handleResponseBody(params, body)
 
-
-            setTimeout(callback, 1500);
+            setTimeout(callback, 800);
         });
     }
 
@@ -136,7 +176,6 @@ module.exports = class Searcher {
                 })
             } else {
                 console.log('Search Terminated')
-                setTimeout(this.teller.searchTerminated, 2000);
                 if (onTerminate) onTerminate();
             }
         }

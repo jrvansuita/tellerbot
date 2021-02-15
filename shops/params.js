@@ -3,6 +3,8 @@ module.exports = class Params {
         this.setStoreName(storeName)
             .setMinPrice(0)
             .setMaxPrice(9999)
+
+
     }
 
     setUrls(urls) {
@@ -57,10 +59,23 @@ module.exports = class Params {
         return this;
     }
 
+    setImageItemSelector(selector) {
+        this.imgItemSelector = selector;
+        return this;
+    }
+
     setLinkItemSelector(selector) {
         this.linkItemSelector = selector;
         return this;
     }
+
+    setConcatLinkItem(concatTerm) {
+        this.concatLink = concatTerm;
+        return this;
+    }
+
+
+
 
     setAdditionalItemSelector(selector) {
         this.additionalItemSelector = selector;

@@ -34,7 +34,7 @@ module.exports = class Mind {
         this.bot.onText(command, async (msg, match) => {
             const chatId = msg.chat.id;
             const message = match[1];
-            var response = await callback(message) || '🤖 sorry';
+            var response = await callback(message, this.bot, chatId) || '🤖 sorry';
             if (response) this.bot.sendMessage(chatId, response, { parse_mode: 'HTML' });
         });
     }
@@ -42,8 +42,8 @@ module.exports = class Mind {
     create() {
         this.initialize();
 
-        this.attach(/\/find (.+)/, (msg) => {
-            return find(msg);
+        this.attach(/\/find (.+)/, (msg, bot, chatId) => {
+            return find(msg, bot, chatId);
         })
 
         this.attach(/\/hunt/, hunt)
@@ -90,12 +90,17 @@ function pref(value) {
     return response;
 }
 
-function find(type) {
+function find(type, bot, chatId) {
     var response = '';
 
     Object.keys(Prefs.items).forEach((key) => {
         if (type == key) {
-            global.executer.clear().put(key).skipPrefs(true).run();
+            global.executer.clear().put(key).skipPrefs(true).run(() => {
+                setTimeout(() => {
+                    bot.sendMessage(chatId, '✅ Search finished!');
+                }, 1000);
+            });
+
             response = '⏳ Searching now...';
         }
     });
