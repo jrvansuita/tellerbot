@@ -74,9 +74,8 @@ module.exports = class Searcher {
                 matched++;
                 console.log(this.teller.getText(params.storeName, item));
                 this.teller.newItemFound(params.storeName, item);
+                Util.sleep(200);
             }
-
-            Util.sleep(500);
         }
 
         console.log(`${iterator.length} items found and ${matched} matched!`);
@@ -87,7 +86,7 @@ module.exports = class Searcher {
         new Scraper(url).get((body) => {
             this.handleResponseBody(params, body)
 
-            setTimeout(callback, 250);
+            setTimeout(callback, 50);
         });
     }
 
