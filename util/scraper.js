@@ -8,7 +8,7 @@ module.exports = class Scraper {
 
     async createBrowser() {
 
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         this.browser = browser;
 
         this.page = await browser.newPage();
