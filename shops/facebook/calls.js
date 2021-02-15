@@ -34,6 +34,38 @@ module.exports = class FacebookCalls {
         return this;
     }
 
+    psuCorsair() {
+        this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=fonte%20corsair%20750')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=fonte%20corsair%20850')
+            .setMinPrice(200)
+            .setMaxPrice(650)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750', '850']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    psuEvga() {
+        this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=fonte%20evga%20750')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=fonte%20evga%20850')
+            .setMinPrice(200)
+            .setMaxPrice(650)
+            .setIgnoreTitleWords(['defeito'])
+            .setIncludesTitleWords(['750', '850',]);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
+    psus() {
+        return this.psuCorsair().psuEvga();
+    }
+
+
     get() {
         var result = this.paramsList;
         this.paramsList = [];
