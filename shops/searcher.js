@@ -24,7 +24,8 @@ module.exports = class Searcher {
 
     isFiltersChecked(params, itemTitle) {
         return (!params.ignoreTitleWords.some((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) })) &&
-            (params.includesTitleWords.some((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) }))
+            (!params.includesTitleWords || params.includesTitleWords.some((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) })) &&
+            (!params.mustContainsAll || params.mustContainsAll.every((w) => { return itemTitle.toLowerCase().includes(w.toLowerCase()) }))
     }
 
     async isIgnoredItem(itemTitle) {
@@ -38,10 +39,13 @@ module.exports = class Searcher {
     parseItem(params, itemSelector) {
         var title = itemSelector.find(params.titleItemSelector).text().trim();
         var link = (params.linkItemSelector ? itemSelector.find(params.linkItemSelector) : itemSelector).first().attr('href');
+        if (params.concatLink) {
+            link = params.concatLink + link;
+        }
+
         var img = params.imgItemSelector ? itemSelector.find(params.imgItemSelector).first().attr('src') : link;
 
-        var price = itemSelector.find(params.priceItemSelector).first().text().trim().replace(/\D/g, "");
-        price = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)
+        var price = 'R$ ' + itemSelector.find(params.priceItemSelector).first().text().trim().match(/[\d|,|.|e|E|\+]+/g).join();
 
         var add = itemSelector.find(params.additionalItemSelector).first().text();
         if (add) {
@@ -50,10 +54,6 @@ module.exports = class Searcher {
         }
 
         title += add;
-
-        if (params.concatLink) {
-            link = params.concatLink + link;
-        }
 
         return { title, price, link, img }
     }
@@ -69,6 +69,7 @@ module.exports = class Searcher {
             const el = iterator[index];
 
             var item = this.parseItem(params, $(el));
+
 
             if (this.isFiltersChecked(params, item.title) && !(await this.isIgnoredItem(item.title))) {
                 matched++;

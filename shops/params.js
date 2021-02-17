@@ -42,6 +42,11 @@ module.exports = class Params {
         return this;
     }
 
+    setMustContainsAllTitleWords(arr) {
+        this.mustContainsAll = arr;
+        return this;
+    }
+
     setIterateItemsSelector(selector) {
         this.iterateItemsSelector = selector;
         return this;

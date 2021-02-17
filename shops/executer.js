@@ -6,12 +6,13 @@ const MercadoLivreCalls = require('./mercado-livre/calls.js');
 const OlxCalls = require('./olx/calls.js');
 const Prefs = require('../redis/prefs.js');
 const FacebookCalls = require('./facebook/calls.js');
+const AliexpressCalls = require('./aliexpress/calls.js');
 
 module.exports = class Executer {
     constructor() {
         this.gearTypes = [];
         this.skipPrefs(false);
-        this.sources = [new OlxCalls(), new MercadoLivreCalls(), new FacebookCalls()]
+        this.sources = [new AliexpressCalls(), new OlxCalls(), new MercadoLivreCalls(), new FacebookCalls()]
     }
 
     skipPrefs(value) {
