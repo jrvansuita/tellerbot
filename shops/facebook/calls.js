@@ -10,6 +10,7 @@ module.exports = class FacebookCalls {
             .setTitleItemSelector('.a3bd9o3v.knj5qynh ')
             .setPriceItemSelector('.g1cxx5fr.lrazzd5p ')
             .setImageItemSelector('img.idiwt2bm.bixrwtb6.ni8dbmo4.stjgntxs.k4urcfbm')
+            .setAdditionalItemSelector('.l9j0dhe7.ltmttdrg')
             .setLinkItemSelector();
 
         this.paramsList = [];
