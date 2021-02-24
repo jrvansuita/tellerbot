@@ -50,7 +50,7 @@ module.exports = class Searcher {
         var add = itemSelector.find(params.additionalItemSelector).first().text();
         if (add) {
             add = add.split('-').length > 1 ? add.split('-') : add.split(',');
-            add = ' em ' + add[0].trim() + '/' + add[1].trim(); tc
+            add = ' em ' + add[0].trim() + '/' + add[1].trim();
         }
 
         title += add;

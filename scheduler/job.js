@@ -1,4 +1,4 @@
-
+const Util = require('../util/util.js');
 const schedule = require('node-schedule');
 const Prefs = require('../redis/prefs.js');
 
@@ -21,15 +21,7 @@ module.exports = class Job {
 
         pattern = pattern + ' * * *';
 
-        const startTime = new Date()
-        startTime.setHours(HOURS_START)
-        startTime.setMinutes(0)
-
-        const endTime = new Date();
-        endTime.setHours(HOURS_END);
-        endTime.setMinutes(0)
-
-        var result = { start: startTime, end: endTime, rule: pattern };
+        var result = { start: Util.date(HOURS_START), end: Util.date(HOURS_END), rule: pattern };
         console.log(result);
 
         return result;
