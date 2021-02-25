@@ -27,17 +27,24 @@ module.exports = class MercadoLivreCalls {
         return this;
     }
 
+
     mobos() {
-        this.params.setUrls(this.base + '/placas-mae/btc_PriceRange_${minPrice}-${maxPrice}')
+        this.params.setUrls(this.base + '/placas-mae/marca-asus/ddr4/asus-b250-mining-expert_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
+            .addUrl(this.base + '/placas-mae/asrock/ddr4/asrock-h110-pro-btc_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
+            .addUrl(this.base + '/placas-mae/gigabyte/ddr4/gigabyte-ga-h110-d3a_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
+            .addUrl(this.base + '/placas-mae/biostar-tb250-btc-pro_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
+            .addUrl(this.base + '/placas-mae/marca-asus/ddr4/asus-prime-z390-p_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
             .setMinPrice(300)
-            .setMaxPrice(600)
+            .setMaxPrice(1200)
             .setIgnoreTitleWords(['defeito'])
-            .setIncludesTitleWords(['12', 'pro']);
+            .setIncludesTitleWords(['b250', 'h110 pro', 'z390', 'tb250', 'h110-d2a', 'h110 d3a', 'mineração']);
 
         this.paramsList.push(lodashClonedeep(this.params))
 
         return this;
     }
+
+
 
     psuCorsair750() {
         this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/750-W/_PriceRange_${minPrice}-${maxPrice}')

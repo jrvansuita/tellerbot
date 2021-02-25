@@ -17,6 +17,23 @@ module.exports = class FacebookCalls {
     }
 
 
+
+    mobos() {
+        this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=b250%20mining')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=biostar%20tb250')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=placa%20mae%20btc')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=placa%20mae%20mineracao')
+            .setMinPrice(300)
+            .setMaxPrice(1200)
+            .setIgnoreTitleWords(['1150', 'lote', 'defeito', 'troco', 'compro',])
+            .setIncludesTitleWords(['tb250 ', 'b250', 'btc', 'mineração'])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
     gpus() {
         this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx580')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx480')

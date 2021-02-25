@@ -22,6 +22,22 @@ module.exports = class OlxCalls {
     }
 
 
+
+    mobos() {
+        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=b250%20mining')
+            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=biostar%20tb250')
+            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20btc')
+            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20mineracao')
+            .setMinPrice(300)
+            .setMaxPrice(1200)
+            .setIgnoreTitleWords(['1150', 'lote', 'defeito', 'troco', 'compro',])
+            .setIncludesTitleWords(['tb250 ', 'b250', 'btc', 'mineração', 'h110'])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
     gpusAmd() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20580%208gb')
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20570%208gb')
