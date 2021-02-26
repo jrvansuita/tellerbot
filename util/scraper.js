@@ -59,13 +59,13 @@ module.exports = class Scraper {
 
             await this.createBrowser();
 
-            await this.page.goto(this.url);
+            await this.page.goto(this.url, { waitUntil: 'load', timeout: 0 });
 
-            await this.page.waitForTimeout(250)
+            await this.page.waitForTimeout(500)
             await this.autoScroll();
             //await this.screenShot();
 
-            content = await this.page.content({ waitUntil: 'load', timeout: 5000 });
+            content = await this.page.content({ waitUntil: 'load', timeout: 10000 });
         } catch (e) {
             console.log('Scraper error')
             console.log(e)
