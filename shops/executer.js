@@ -12,7 +12,7 @@ module.exports = class Executer {
     constructor() {
         this.gearTypes = [];
         this.skipPrefs(false);
-        this.sources = [new AliexpressCalls(), new OlxCalls(), new MercadoLivreCalls(), new FacebookCalls()]
+        this.sources = [new MercadoLivreCalls(), new AliexpressCalls(), new OlxCalls(), new FacebookCalls()]
     }
 
     skipPrefs(value) {
