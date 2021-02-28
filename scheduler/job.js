@@ -4,8 +4,8 @@ const Prefs = require('../redis/prefs.js');
 
 let mainJob;
 
-const HOURS_START = 7;
-const HOURS_END = 23;
+//const HOURS_START = 7;
+//const HOURS_END = 23;
 
 module.exports = class Job {
 
@@ -21,10 +21,12 @@ module.exports = class Job {
 
         pattern = pattern + ' * * *';
 
-        var result = { start: Util.date(HOURS_START), end: Util.date(HOURS_END), rule: pattern };
-        console.log(result);
 
-        return result;
+        // var result = { start: Util.date(HOURS_START), end: Util.date(HOURS_END), rule: pattern };
+        // console.log(result);
+
+        // return result;
+        return pattern;
     }
 
     static async reschedule() {
