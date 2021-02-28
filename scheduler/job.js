@@ -2,7 +2,7 @@ const Util = require('../util/util.js');
 const schedule = require('node-schedule');
 const Prefs = require('../redis/prefs.js');
 
-let mainJob;
+var mainJob;
 
 //const HOURS_START = 7;
 //const HOURS_END = 23;
@@ -34,7 +34,9 @@ module.exports = class Job {
     }
 
     static now() {
-        mainJob.invoke();
+        if (mainJob) {
+            mainJob.invoke();
+        }
     }
 
     async bind(work, onTerminate) {
