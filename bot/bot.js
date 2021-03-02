@@ -22,7 +22,9 @@ module.exports = class TellerBot {
 
         if (!botHello) {
             botHello = true;
-            bot.sendMessage(telegramGroupId, '👋 Hello! I woke up.');
+
+            var time = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+            bot.sendMessage(telegramGroupId, '👋 Hello! I woke up ' + time);
 
         }
     }
