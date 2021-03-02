@@ -7,6 +7,7 @@ const bot = new TelegramBot(token, { polling: true });
 const telegramGroupId = -549708490;
 
 const BotMind = require('./mind.js');
+let botHello = false;
 
 
 new BotMind(bot).create();
@@ -15,8 +16,15 @@ new BotMind(bot).create();
 
 module.exports = class TellerBot {
 
+
     constructor() {
         this.textOptions = { parse_mode: 'HTML', disable_web_page_preview: true, allow_sending_without_reply: true }
+
+        if (!botHello) {
+            botHello = true;
+            bot.sendMessage(telegramGroupId, '👋 Hello! I woke up.');
+
+        }
     }
 
     getMessage(source, item) {
