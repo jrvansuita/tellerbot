@@ -19,7 +19,7 @@ module.exports = class Mind {
     initialize() {
         this.bot.on('polling_error', (error) => {
             console.log(error.message); // => 'EFATAL'
-            this.bot.sendMessage(error.message);
+            //this.bot.sendMessage(error.message);
         });
 
         this.bot.on("callback_query", (data) => {
