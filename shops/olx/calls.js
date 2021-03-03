@@ -140,7 +140,7 @@ module.exports = class OlxCalls {
             .gpusNvidia1070()
             .gpusNvidia1080()
             .gpusNvidia1660()
-            .getgpusBRGeral();
+            .gpusBRGeral();
     }
 
 
