@@ -117,6 +117,21 @@ module.exports = class OlxCalls {
         return this;
     }
 
+    gpusBRGeral() {
+        this.params.setUrls('https://www.olx.com.br/brasil?q=rx%20580%208gb&pe=${maxPrice}&ps=${minPrice}')
+            .addUrl('https://www.olx.com.br/brasil?q=rx%20480%208gb&pe=${maxPrice}&ps=${minPrice}')
+            .addUrl('https://www.olx.com.br/brasil?q=rx%20470%208gb&pe=${maxPrice}&ps=${minPrice}')
+            .addUrl('https://www.olx.com.br/brasil?q=rx%20570%208gb&pe=${maxPrice}&ps=${minPrice}')
+            .setMinPrice(900)
+            .setMaxPrice(1700)
+            .setIgnoreTitleWords([...this.defIgnores])
+            .setIncludesTitleWords('580', '570', '480', '470')
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
     gpus() {
         return this
             .gpusAmd()
@@ -124,7 +139,8 @@ module.exports = class OlxCalls {
             .gpusNvidia1060()
             .gpusNvidia1070()
             .gpusNvidia1080()
-            .gpusNvidia1660();
+            .gpusNvidia1660()
+            .getgpusBRGeral();
     }
 
 
