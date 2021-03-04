@@ -5,7 +5,7 @@ const Prefs = require('../redis/prefs.js');
 var mainJob;
 
 //const HOURS_START = 7;
-//const HOURS_END = 23;
+////const HOURS_END = 23;  
 
 module.exports = class Job {
 
