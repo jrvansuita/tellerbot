@@ -9,9 +9,15 @@ module.exports = class Memories {
     }
 
     has(text) {
-        return this.phrases.some((e) => {
+        var hasit = this.phrases.some((e) => {
             return e == text;
         });
+
+        if (hasit) {
+            console.log('Already has: ' + text)
+        }
+
+        return hasit;
     }
 
 }
