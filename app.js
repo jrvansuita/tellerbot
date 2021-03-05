@@ -9,8 +9,8 @@ global.job = Job;
 
 new Job().bind(async () => {
     new Executer().all().run();
-}, (job) => {
-    //job.now();
+}, () => {
+    Job.now();
 })
 
 

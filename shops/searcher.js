@@ -70,12 +70,13 @@ module.exports = class Searcher {
 
             var item = this.parseItem(params, $(el));
 
-
             if (this.isFiltersChecked(params, item.title) && !(await this.isIgnoredItem(item.title))) {
-                matched++;
-                console.log(this.teller.getText(params.storeName, item));
-                this.teller.newItemFound(params.storeName, item);
-                Util.sleep(500);
+                if (this.teller.handleNewItemFound(params.storeName, item)) {
+                    matched++;
+                    console.log(this.teller.getText(params.storeName, item));
+                    Util.sleep(500);
+                }
+
             }
         }
 

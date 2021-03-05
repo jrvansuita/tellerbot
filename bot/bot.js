@@ -13,6 +13,11 @@ let botHello = false;
 new BotMind(bot).create();
 
 
+if (!global.BotMemories) {
+    global.BotMemories = new (require('./mem.js'))();
+}
+
+
 
 module.exports = class TellerBot {
 
@@ -37,22 +42,36 @@ module.exports = class TellerBot {
         return item.title + ' no ' + source + ' por ' + item.price;
     }
 
-    newItemFound(source, item) {
-        var options = {
-            caption: this.getMessage(source, item),
-            ...this.textOptions,
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: ' Acessar', url: item.link }, { text: ' Ignorar', callback_data: 'ignore-item' }]
-                ]
-            }
-        };
 
-        bot.sendPhoto(telegramGroupId, item.img || item.link, options)
+    handleNewItemFound(source, item) {
+        var captionText = this.getMessage(source, item);
+
+        if (!global.BotMemories.has(captionText)) {
+            global.BotMemories.put(captionText);
+
+            var options = {
+                caption: captionText,
+                ...this.textOptions,
+                reply_markup: {
+                    inline_keyboard: [
+                        [{ text: ' Acessar', url: item.link }, { text: ' Ignorar', callback_data: 'ignore-item' }]
+                    ]
+                }
+            };
+
+            bot.sendPhoto(telegramGroupId, item.img || item.link, options)
+            return true;
+        }
+
+        return false;
     }
 
     searchTerminated() {
         bot.sendMessage(telegramGroupId, '✅ Search Done!');
+    }
+
+    getMemories() {
+
     }
 
 };

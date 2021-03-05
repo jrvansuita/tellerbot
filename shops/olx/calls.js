@@ -125,7 +125,7 @@ module.exports = class OlxCalls {
             .setMinPrice(900)
             .setMaxPrice(1700)
             .setIgnoreTitleWords([...this.defIgnores])
-            .setIncludesTitleWords('580', '570', '480', '470')
+            .setIncludesTitleWords(['580', '570', '480', '470'])
 
         this.paramsList.push(lodashClonedeep(this.params))
 
