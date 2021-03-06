@@ -12,17 +12,13 @@ let botHello = false;
 
 new BotMind(bot).create();
 
-
-if (!global.BotMemories) {
-    global.BotMemories = new (require('./mem.js'))();
-}
-
-
+const BotMemories = require('./mem.js');
 
 module.exports = class TellerBot {
 
 
     constructor() {
+        this.memories = new BotMemories();
         this.textOptions = { parse_mode: 'HTML', disable_web_page_preview: true, allow_sending_without_reply: true }
 
         if (!botHello) {
@@ -46,8 +42,8 @@ module.exports = class TellerBot {
     handleNewItemFound(source, item) {
         var captionText = this.getMessage(source, item);
 
-        if (!global.BotMemories.has(captionText)) {
-            global.BotMemories.put(captionText);
+        if (!this.memories.has(captionText)) {
+            this.memories.put(captionText);
 
             var options = {
                 caption: captionText,
@@ -70,8 +66,6 @@ module.exports = class TellerBot {
         bot.sendMessage(telegramGroupId, '✅ Search Done!');
     }
 
-    getMemories() {
 
-    }
 
 };

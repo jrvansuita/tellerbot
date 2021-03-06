@@ -1,15 +1,16 @@
-module.exports = class Memories {
-    constructor() {
-        this.phrases = [];
-    }
 
+if (global.phrases == undefined) {
+    global.phrases = [];
+}
+
+module.exports = class Memories {
 
     put(text) {
-        this.phrases.push(text)
+        global.phrases.push(text)
     }
 
     has(text) {
-        var hasit = this.phrases.some((e) => {
+        var hasit = global.phrases.some((e) => {
             return e == text;
         });
 
