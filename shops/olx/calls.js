@@ -15,7 +15,7 @@ module.exports = class OlxCalls {
             .setAdditionalItemSelector('.sc-7l84qu-1')
             .setLinkItemSelector();
 
-        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo', '+'];
+        this.defIgnores = ['4gb', '2gb', '3g', '4g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo'];
 
         this.paramsList = [];
 
@@ -132,6 +132,25 @@ module.exports = class OlxCalls {
         return this;
     }
 
+
+    gpus4gb() {
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20580%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20570%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20470%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20480%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%204gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=nvidia')
+            .setMinPrice(500)
+            .setMaxPrice(1300)
+            .setIgnoreTitleWords(['8gb', '2gb', '3g', '8g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo'])
+            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080', '1650', '1050']);
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
     gpus() {
         return this
             .gpusAmd()
@@ -140,7 +159,8 @@ module.exports = class OlxCalls {
             .gpusNvidia1070()
             .gpusNvidia1080()
             .gpusNvidia1660()
-            .gpusBRGeral();
+            .gpusBRGeral()
+            .gpus4gb();
     }
 
 
