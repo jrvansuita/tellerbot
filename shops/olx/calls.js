@@ -29,7 +29,7 @@ module.exports = class OlxCalls {
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20btc')
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20mineracao')
             .setMinPrice(300)
-            .setMaxPrice(1200)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords(['1150', 'lote', 'defeito', 'troco', 'compro',])
             .setIncludesTitleWords(['tb250 ', 'b250', 'btc', 'mineração', 'h110'])
 
@@ -46,7 +46,7 @@ module.exports = class OlxCalls {
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%208gb')
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%208gb')
             .setMinPrice(800)
-            .setMaxPrice(1500)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080']);
 
@@ -95,7 +95,7 @@ module.exports = class OlxCalls {
     gpusNvidia1080() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201080%208gb')
             .setMinPrice(800)
-            .setMaxPrice(2000)
+            .setMaxPrice(2500)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '8gb']);
 
@@ -108,7 +108,7 @@ module.exports = class OlxCalls {
     gpusNvidia1060() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201060%206gb')
             .setMinPrice(800)
-            .setMaxPrice(1200)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1060', '6gb']);
 
@@ -123,7 +123,7 @@ module.exports = class OlxCalls {
             .addUrl('https://www.olx.com.br/brasil?q=rx%20470%208gb&pe=${maxPrice}&ps=${minPrice}')
             .addUrl('https://www.olx.com.br/brasil?q=rx%20570%208gb&pe=${maxPrice}&ps=${minPrice}')
             .setMinPrice(900)
-            .setMaxPrice(1700)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['580', '570', '480', '470'])
 
@@ -142,7 +142,7 @@ module.exports = class OlxCalls {
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%204gb')
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=nvidia')
             .setMinPrice(500)
-            .setMaxPrice(1300)
+            .setMaxPrice(1800)
             .setIgnoreTitleWords(['8gb', '2gb', '3g', '8g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080', '1650', '1050']);
 

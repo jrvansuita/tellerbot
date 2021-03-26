@@ -18,7 +18,7 @@ module.exports = class MercadoLivreCalls {
     gpus8gb() {
         this.params.setUrls(this.base + '/placas-video/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(800)
-            .setMaxPrice(1650)
+            .setMaxPrice(2500)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada'])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
 
@@ -34,7 +34,7 @@ module.exports = class MercadoLivreCalls {
             .addUrl(this.base + '/placas-video/4-gb/rx-570-4gb_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .addUrl(this.base + '/placas-video/4-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(600)
-            .setMaxPrice(1000)
+            .setMaxPrice(1500)
             .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeit', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada'])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '460', '1660', '1650'])
 
@@ -55,7 +55,7 @@ module.exports = class MercadoLivreCalls {
             .addUrl(this.base + '/placas-mae/biostar-tb250-btc-pro_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
             .addUrl(this.base + '/placas-mae/marca-asus/ddr4/asus-prime-z390-p_PriceRange_${minPrice}-${maxPrice}_OrderId_PRICE')
             .setMinPrice(300)
-            .setMaxPrice(1200)
+            .setMaxPrice(1600)
             .setIgnoreTitleWords(['defeito'])
             .setIncludesTitleWords(['b250', 'h110 pro', 'z390', 'tb250', 'h110-d2a', 'h110 d3a', 'mineração']);
 
