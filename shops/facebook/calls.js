@@ -43,7 +43,7 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1070')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
             .setMinPrice(700)
-            .setMaxPrice(2300)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '4g', '2g', 'somente troca', 'apenas troca', 'pc gamer'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 '])
 
