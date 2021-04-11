@@ -35,6 +35,10 @@ module.exports = class FacebookCalls {
 
 
     gpus() {
+        return this.gpus8gb().gpus4gb();
+    }
+
+    gpus8gb() {
         this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx580')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx480')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx470')
@@ -44,8 +48,28 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
             .setMinPrice(700)
             .setMaxPrice(2000)
-            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '4g', '2g', 'somente troca', 'apenas troca', 'pc gamer'])
-            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 '])
+            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '4g', '2g'])
+            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 ', '1660 '])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    gpus4gb() {
+        this.params.setUrls(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx580')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx480')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx470')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx570')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=rx590')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1070')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1660')
+            .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=placa%20e%20video')
+            .setMinPrice(500)
+            .setMaxPrice(1200)
+            .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '8g', '2g'])
+            .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 ', '1660 '])
 
         this.paramsList.push(lodashClonedeep(this.params))
 
