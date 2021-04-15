@@ -69,7 +69,7 @@ module.exports = class MercadoLivreCalls {
     psuCorsair750() {
         this.params.setUrls(this.base + '/fontes-alimentacao/atx/corsair/750-W/_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(200)
-            .setMaxPrice(450)
+            .setMaxPrice(550)
             .setIgnoreTitleWords(['defeito'])
             .setIncludesTitleWords(['750', 'corsair']);
 
@@ -119,7 +119,7 @@ module.exports = class MercadoLivreCalls {
     psuEvga750() {
         this.params.setUrls(this.base + '/fontes-alimentacao/atx/evga/750-W/_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(200)
-            .setMaxPrice(450)
+            .setMaxPrice(550)
             .setIgnoreTitleWords(['defeito'])
             .setIncludesTitleWords(['750', 'evga']);
 
