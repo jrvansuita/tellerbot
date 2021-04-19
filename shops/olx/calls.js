@@ -142,7 +142,7 @@ module.exports = class OlxCalls {
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%204gb')
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=nvidia')
             .setMinPrice(500)
-            .setMaxPrice(1800)
+            .setMaxPrice(1500)
             .setIgnoreTitleWords(['8gb', '2gb', '3g', '8g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080', '1650', '1050']);
 

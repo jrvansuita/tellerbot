@@ -67,7 +67,7 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1660')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=placa%20e%20video')
             .setMinPrice(500)
-            .setMaxPrice(1200)
+            .setMaxPrice(1500)
             .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '8g', '2g'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 ', '1660 '])
 
