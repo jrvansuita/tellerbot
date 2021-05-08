@@ -47,7 +47,7 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1070')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1080')
             .setMinPrice(700)
-            .setMaxPrice(2000)
+            .setMaxPrice(3000)
             .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '4g', '2g'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 ', '1660 '])
 
@@ -67,7 +67,7 @@ module.exports = class FacebookCalls {
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=gtx1660')
             .addUrl(this.base + '/search?minPrice=${minPrice}&maxPrice=${maxPrice}&query=placa%20e%20video')
             .setMinPrice(500)
-            .setMaxPrice(1500)
+            .setMaxPrice(2000)
             .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeito', 'troco', 'compro', '8g', '2g'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070 ', '1080', '1650 ', '1660 '])
 
