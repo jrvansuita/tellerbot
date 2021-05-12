@@ -46,7 +46,7 @@ module.exports = class OlxCalls {
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%208gb')
             .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%208gb')
             .setMinPrice(800)
-            .setMaxPrice(2000)
+            .setMaxPrice(4000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080']);
 
@@ -70,7 +70,7 @@ module.exports = class OlxCalls {
     gpusNvidia1660() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201660%20ti')
             .setMinPrice(800)
-            .setMaxPrice(3000)
+            .setMaxPrice(4000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '6gb', '1660', '8gb']);
 
@@ -83,7 +83,7 @@ module.exports = class OlxCalls {
     gpusNvidia1070() {
         this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201070%208gb')
             .setMinPrice(800)
-            .setMaxPrice(2500)
+            .setMaxPrice(3500)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['1070', '1080', '8gb']);
 
@@ -123,7 +123,7 @@ module.exports = class OlxCalls {
             .addUrl('https://www.olx.com.br/brasil?q=rx%20470%208gb&pe=${maxPrice}&ps=${minPrice}')
             .addUrl('https://www.olx.com.br/brasil?q=rx%20570%208gb&pe=${maxPrice}&ps=${minPrice}')
             .setMinPrice(900)
-            .setMaxPrice(3000)
+            .setMaxPrice(4000)
             .setIgnoreTitleWords([...this.defIgnores])
             .setIncludesTitleWords(['580', '570', '480', '470'])
 
@@ -142,7 +142,7 @@ module.exports = class OlxCalls {
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%204gb')
             .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=nvidia')
             .setMinPrice(500)
-            .setMaxPrice(2500)
+            .setMaxPrice(3000)
             .setIgnoreTitleWords(['8gb', '2gb', '3g', '8g', 'lote', 'defeito', 'compro', 'kit', 'troco', 'troca', 'ssd', ' ram ', 'c0mpro', 'seminovo'])
             .setIncludesTitleWords(['580 ', '570 ', '590 ', '480 ', '470 ', '1070', '1080', '1650', '1050']);
 

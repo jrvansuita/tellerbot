@@ -20,7 +20,7 @@ module.exports = class AliexpressCalls {
     gpus() {
         this.params.setUrls(this.base + '&minPrice=${minPrice}&maxPrice=${maxPrice}&SearchText=rx%20580%208%20gb')
             .setMinPrice(700)
-            .setMaxPrice(2000)
+            .setMaxPrice(4000)
             .setIgnoreTitleWords(['4gb', '2gb', 'mãe', 'desktop', 'fonte', 'motherboard'])
             .setMustContainsAllTitleWords(['rx', '580', '8gb'])
 
