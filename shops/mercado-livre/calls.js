@@ -43,8 +43,20 @@ module.exports = class MercadoLivreCalls {
         return this;
     }
 
+    gpu3060() {
+        this.params.setUrls(this.base + '/placas-video/mais-de-12-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(2500)
+            .setMaxPrice(4300)
+            .setIgnoreTitleWords(['8gb', '4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada'])
+            .setIncludesTitleWords(['3060', '3060ti', 'rtx3060'])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
     gpus() {
-        return this.gpus4gb().gpus8gb();
+        return this.gpus4gb().gpus8gb().gpu3060();
     }
 
 
