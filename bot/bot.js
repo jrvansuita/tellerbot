@@ -55,7 +55,10 @@ module.exports = class TellerBot {
                 }
             };
 
-            bot.sendPhoto(telegramGroupId, item.img || item.link, options)
+            if (process.env.PRODUCTION !== undefined) {
+                bot.sendPhoto(telegramGroupId, item.img || item.link, options)
+            }
+
             return true;
         }
 

@@ -31,6 +31,11 @@ module.exports = class Searcher {
     async isIgnoredItem(itemTitle) {
         var ignoreList = await Prefs.ignores();
 
+        //Clear the ignore list when its full of old itens.
+        if (ignoreList.length > 300) {
+            Prefs.ignores(null, true);
+        }
+
         return ignoreList.some((e) => {
             return e.includes(itemTitle);
         })
@@ -70,13 +75,20 @@ module.exports = class Searcher {
 
             var item = this.parseItem(params, $(el));
 
+            var desc = this.teller.getText(params.storeName, item);
+
+
             if (this.isFiltersChecked(params, item.title) && !(await this.isIgnoredItem(item.title))) {
                 if (this.teller.handleNewItemFound(params.storeName, item)) {
                     matched++;
-                    console.log(this.teller.getText(params.storeName, item));
+                    console.log('✅' + desc);
                     Util.sleep(500);
+                } else {
+                    console.log('↩️❌' + desc);
                 }
 
+            } else {
+                console.log('💲❌' + desc);
             }
         }
 
