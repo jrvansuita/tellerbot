@@ -55,8 +55,39 @@ module.exports = class MercadoLivreCalls {
         return this;
     }
 
+
+    gpuDefeitao() {
+        this.params.setUrls(this.base + '/placas-video/pci-express-30/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(300)
+            .setMaxPrice(1000)
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '4gb', '2gb'])
+            .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '6gb', '8gb', '12gb'])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+    gpuDefeitinho() {
+        this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(200)
+            .setMaxPrice(600)
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '460', 'Hd'])
+            .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '4gb'])
+
+        this.paramsList.push(lodashClonedeep(this.params))
+
+        return this;
+    }
+
+
     gpus() {
-        return this.gpus4gb().gpus8gb().gpu3060();
+        return this
+            .gpus4gb()
+            .gpus8gb()
+            .gpu3060()
+            .gpuDefeitao()
+            .gpuDefeitinho();
     }
 
 
