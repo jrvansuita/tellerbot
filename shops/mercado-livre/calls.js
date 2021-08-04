@@ -19,7 +19,7 @@ module.exports = class MercadoLivreCalls {
         this.params.setUrls(this.base + '/placas-video/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(800)
             .setMaxPrice(2500)
-            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada'])
+            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada', '560', '460'])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
 
         this.paramsList.push(lodashClonedeep(this.params))
@@ -35,8 +35,8 @@ module.exports = class MercadoLivreCalls {
             .addUrl(this.base + '/placas-video/4-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(600)
             .setMaxPrice(1500)
-            .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeit', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada'])
-            .setIncludesTitleWords(['580', '570', '590', '480', '470', '460', '1660', '1650'])
+            .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeit', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada', '560', '460'])
+            .setIncludesTitleWords(['580', '570', '590', '480', '470', '1660', '1650'])
 
         this.paramsList.push(lodashClonedeep(this.params))
 
@@ -72,7 +72,7 @@ module.exports = class MercadoLivreCalls {
         this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(200)
             .setMaxPrice(600)
-            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '460', 'Hd'])
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '560', '460', 'Hd'])
             .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '4gb'])
 
         this.paramsList.push(lodashClonedeep(this.params))
