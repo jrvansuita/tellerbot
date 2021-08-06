@@ -72,7 +72,7 @@ module.exports = class MercadoLivreCalls {
         this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(200)
             .setMaxPrice(600)
-            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '560', '460', 'Hd'])
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '560', '460', 'Hd', '550', '1050'])
             .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '4gb'])
 
         this.paramsList.push(lodashClonedeep(this.params))
