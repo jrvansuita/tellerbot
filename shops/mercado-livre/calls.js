@@ -69,10 +69,10 @@ module.exports = class MercadoLivreCalls {
     }
 
     gpuDefeitinho() {
-        this.params.setUrls(this.base + '/placas-video/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+        this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(200)
             .setMaxPrice(1000)
-            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', '12gb', 'R9', '760', '560', '460', 'Hd', '550', '1050', '970'])
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', 'geforce', '12gb', 'R9', '760', '560', '460', 'Hd', '550', '1050', '970', '730', '690'])
             .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '4gb'])
 
         this.paramsList.push(lodashClonedeep(this.params))
