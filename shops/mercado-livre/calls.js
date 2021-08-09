@@ -83,9 +83,9 @@ module.exports = class MercadoLivreCalls {
 
     gpus() {
         return this
-            // .gpus4gb()
-            // .gpus8gb()
-            // .gpu3060()
+            .gpus4gb()
+            .gpus8gb()
+            .gpu3060()
             .gpuDefeitao()
             .gpuDefeitinho();
     }
