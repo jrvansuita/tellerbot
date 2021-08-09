@@ -57,7 +57,7 @@ module.exports = class MercadoLivreCalls {
 
 
     gpuDefeitao() {
-        this.params.setUrls(this.base + '/placas-video/gddr5/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+        this.params.setUrls(this.base + '/placas-video/gddr5/usado/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(300)
             .setMaxPrice(1500)
             .setIgnoreTitleWords(['Semi Nova', 'compro', '4gb', '2gb'])
@@ -69,11 +69,11 @@ module.exports = class MercadoLivreCalls {
     }
 
     gpuDefeitinho() {
-        this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
-            .setMinPrice(200)
-            .setMaxPrice(1000)
-            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', 'geforce', '12gb', 'R9', '760', '560', '460', 'Hd', '550', '1050', '970', '730', '690'])
-            .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', '4gb'])
+        this.params.setUrls(this.base + '/placas-video/pci-express-30/4-gb/usado/gddr5/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
+            .setMinPrice(300)
+            .setMaxPrice(999)
+            .setIgnoreTitleWords(['Semi Nova', 'compro', '8gb', '2gb', '6gb', 'geforce', '12gb', 'R9', '760', '560', '460', 'Hd', '550', '1050', '970', '730', '690', 'R7'])
+            .setIncludesTitleWords(['defeito', 'falha', 'leia', 'artefato', 'nao liga', 'não liga', 'danificada', 'Dá Vídeo'])
 
         this.paramsList.push(lodashClonedeep(this.params))
 
@@ -83,9 +83,9 @@ module.exports = class MercadoLivreCalls {
 
     gpus() {
         return this
-            .gpus4gb()
-            .gpus8gb()
-            .gpu3060()
+            // .gpus4gb()
+            // .gpus8gb()
+            // .gpu3060()
             .gpuDefeitao()
             .gpuDefeitinho();
     }
