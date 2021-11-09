@@ -24,10 +24,10 @@ module.exports = class OlxCalls {
 
 
     mobos() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=b250%20mining')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=biostar%20tb250')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20btc')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20mineracao')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=b250%20mining')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=biostar%20tb250')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20btc')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=placa%20mae%20mineracao')
             .setMinPrice(300)
             .setMaxPrice(2000)
             .setIgnoreTitleWords(['1150', 'lote', 'defeito', 'troco', 'compro',])
@@ -39,12 +39,12 @@ module.exports = class OlxCalls {
     }
 
     gpusAmd() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20580%208gb')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20570%208gb')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20470%208gb')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20480%208gb')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%208gb')
-            .addUrl(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%208gb')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20580%208gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20570%208gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20470%208gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20480%208gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20560%208gb')
+            .addUrl(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%20590%208gb')
             .setMinPrice(800)
             .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -56,7 +56,7 @@ module.exports = class OlxCalls {
     }
 
     gpuAmd5700() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=rx%205700xt%208gb')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=rx%205700xt%208gb')
             .setMinPrice(800)
             .setMaxPrice(3000)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -68,7 +68,7 @@ module.exports = class OlxCalls {
     }
 
     gpusNvidia1660() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201660%20ti')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201660%20ti')
             .setMinPrice(800)
             .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -81,7 +81,7 @@ module.exports = class OlxCalls {
 
 
     gpusNvidia1070() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201070%208gb')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201070%208gb')
             .setMinPrice(800)
             .setMaxPrice(2500)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -93,7 +93,7 @@ module.exports = class OlxCalls {
     }
 
     gpusNvidia1080() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201080%208gb')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201080%208gb')
             .setMinPrice(800)
             .setMaxPrice(2500)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -106,7 +106,7 @@ module.exports = class OlxCalls {
 
 
     gpusNvidia1060() {
-        this.params.setUrls(this.base + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201060%206gb')
+        this.params.setUrls(this.baseSC + '?pe=${maxPrice}&ps=${minPrice}&q=gtx%201060%206gb')
             .setMinPrice(800)
             .setMaxPrice(2000)
             .setIgnoreTitleWords([...this.defIgnores])
@@ -159,7 +159,7 @@ module.exports = class OlxCalls {
             .gpusNvidia1070()
             .gpusNvidia1080()
             .gpusNvidia1660()
-            .gpusBRGeral()
+            //.gpusBRGeral()
             .gpus4gb();
     }
 
