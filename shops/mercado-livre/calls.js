@@ -1,10 +1,14 @@
 const Params = require("../params");
 const lodashClonedeep = require('lodash.clonedeep');
 
+
+const defIgnore = ['2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', '6570', 'hdmi', 'não liga', 'danificada', '560', '460', 'retir', 'reparo', 'concerto', 'nao da'];
+
+
 module.exports = class MercadoLivreCalls {
     constructor() {
         this.params = new Params('Mercado Livre');
-        this.base = 'https://informatica.mercadolivre.com.br/componentes-pc';
+        this.base = 'https://informatica.mercadolivre.com.br/componentes-pc/usado';
         this.params.setIterateItemsSelector('.ui-search-layout__item')
             .setTitleItemSelector('.ui-search-item__title.ui-search-item__group__element')
             .setPriceItemSelector('.price-tag.ui-search-price__part .price-tag-fraction')
@@ -17,9 +21,9 @@ module.exports = class MercadoLivreCalls {
 
     gpus8gb() {
         this.params.setUrls(this.base + '/placas-video/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
-            .setMinPrice(800)
-            .setMaxPrice(1900)
-            .setIgnoreTitleWords(['4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada', '560', '460', 'retir', 'reparo', 'concerto', 'nao da'])
+            .setMinPrice(600)
+            .setMaxPrice(1400)
+            .setIgnoreTitleWords(['4gb', ...defIgnore])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
 
         this.paramsList.push(lodashClonedeep(this.params))
@@ -33,9 +37,9 @@ module.exports = class MercadoLivreCalls {
             .addUrl(this.base + '/placas-video/4-gb/rx-580-4gb_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .addUrl(this.base + '/placas-video/4-gb/rx-570-4gb_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .addUrl(this.base + '/placas-video/4-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
-            .setMinPrice(600)
-            .setMaxPrice(1200)
-            .setIgnoreTitleWords(['8gb', '2gb', 'lote', 'defeit', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada', '560', '460', 'retir', 'reparo', 'concerto', 'nao da'])
+            .setMinPrice(500)
+            .setMaxPrice(1300)
+            .setIgnoreTitleWords(['8gb', ...defIgnore])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1660', '1650'])
 
         this.paramsList.push(lodashClonedeep(this.params))
@@ -45,8 +49,8 @@ module.exports = class MercadoLivreCalls {
 
     gpu3060() {
         this.params.setUrls(this.base + '/placas-video/mais-de-12-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
-            .setMinPrice(2000)
-            .setMaxPrice(3400)
+            .setMinPrice(1500)
+            .setMaxPrice(3000)
             .setIgnoreTitleWords(['8gb', '4gb', '2gb', 'lote', 'defeito', 'Semi Nova', 'compro', 'nao liga', 'não liga', 'danificada', 'retir', 'reparo', 'concerto', 'nao da'])
             .setIncludesTitleWords(['3060', '3060ti', 'rtx3060'])
 
