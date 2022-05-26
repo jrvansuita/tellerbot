@@ -21,7 +21,7 @@ module.exports = class MercadoLivreCalls {
 
     gpus8gb() {
         this.params.setUrls(this.base + '/placas-video/mais-de-8-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
-            .setMinPrice(600)
+            .setMinPrice(500)
             .setMaxPrice(1300)
             .setIgnoreTitleWords(['4gb', ...defIgnore])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1070', '1080', '1060', '1660'])
@@ -38,7 +38,7 @@ module.exports = class MercadoLivreCalls {
             .addUrl(this.base + '/placas-video/4-gb/rx-570-4gb_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .addUrl(this.base + '/placas-video/4-gb/_OrderId_PRICE_PriceRange_${minPrice}-${maxPrice}')
             .setMinPrice(500)
-            .setMaxPrice(1000)
+            .setMaxPrice(990)
             .setIgnoreTitleWords(['8gb', ...defIgnore])
             .setIncludesTitleWords(['580', '570', '590', '480', '470', '1660', '1650'])
 
